@@ -67,29 +67,6 @@ Archiv:
 - Offen:
   - konkreter Provider + Voice‑Katalog + Pricing (siehe Issue `agents/issues/ISSUE-0002-provider-recherche-tts-dec-004.md`).
 
-## DEC-007: Retention Defaults (Inputs/Outputs/Audio/Logs)
-- Status: open
-- Default:
-  - Nutzer‑Assets (Skript/Audio): gespeichert bis Nutzer löscht (oder Account‑Löschung)
-  - DSAR Export: Export-Datei nur **kurzlebig** (signed URL, TTL z.B. 24–72h), danach löschen
-  - Provider‑Requests/Logs: **datensparsam** (keine Volltexte/Payloads), nur Request‑IDs + Usage + Error‑Codes; Retention kurz (z.B. 14–30 Tage)
-  - App‑Logs: datensparsam, ohne sensitive Inhalte; Retention kurz (z.B. 14–30 Tage)
-  - Audio‑Exports: nur im eigenen Storage, keine “public” Buckets (signed URLs)
-- Hinweis: Billing-/Ledger‑Daten und Consent‑Records können aus **gesetzlichen Aufbewahrungspflichten** länger aufzubewahren sein (Details später juristisch prüfen).
-- Ergänzung: Nutzer müssen **Export** ihrer personenbezogenen Daten/Assets (DSAR‑gedacht) durchführen können (siehe `planung/flows.md`, `planung/kriterien.md`, `agents/runbooks/dsar_delete.md`).
-- Impact: DSGVO‑Dokumentation, Storage‑Kosten, “Alles löschen” Implementierung.
-- Fragen:
-  1) Debugging: Sollen wir jemals Provider‑Payloads (Prompts/SSML) serverseitig speichern? Default: **nein** (nur im User‑Asset “Skript” selbst).
-  2) Log‑Retention: lieber **14 Tage** (datensparsam) oder **30 Tage** (besser für Support)?
-
-## DEC-019: OAuth Provider (MVP)
-- Status: open
-- Default (Vorschlag): **Google OAuth** im MVP, Apple später (mehr Setup/Review).
-- Warum: OAuth ist gewünscht, aber wir halten den MVP‑Scope klein.
-- Fragen:
-  1) OAuth im MVP: nur Google, oder Google + Apple?
-- Impact: Auth‑Setup, Provider‑Configs, Support.
-
 ## DEC-009: Queue/Worker Technologie (MVP)
 - Status: proposed
 - Default (Vorschlag): Postgres‑basierter Worker (z.B. `pg-boss` oder `graphile-worker`) wie in `planung/architecture.md`.
@@ -216,7 +193,7 @@ Archiv:
 - Status: decided
 - Entscheidung: **E‑Mail Magic Link + OAuth** im MVP.
 - Warum: weniger Friction für Einsteiger (Magic Link) + Komfort für Power‑User (OAuth).
-- Offen (separat): welche OAuth‑Provider genau → siehe DEC‑019.
+- OAuth Provider: entschieden in DEC‑019.
 - Impact: Account‑UX, Support, Fraud‑Risiko.
 
 ## DEC-018: Guardrails-Striktheit (Block vs. Warn vs. Allow)
@@ -228,3 +205,20 @@ Archiv:
   - **Allow (mit Warn/Wellness‑Reframe)**: Depression/Angst (ohne Heil-/Therapie‑Claims).
 - Hinweis: Das erhöht Support‑/Haftungs-/Reputationsrisiko; muss sauber in `planung/safety-policy.md` + UX umgesetzt werden.
 - Impact: Safety‑Policy, UX (Warn/Block Screens), Support‑Aufwand, Haftungs-/Reputationsrisiko.
+
+## DEC-007: Retention Defaults (Inputs/Outputs/Audio/Logs)
+- Status: decided
+- Entscheidung:
+  - Nutzer‑Assets (Skript/Audio): gespeichert bis Nutzer löscht (oder Account‑Löschung)
+  - DSAR Export: Export-Datei nur **kurzlebig** (signed URL, TTL z.B. 24–72h), danach löschen
+  - Provider‑Requests/Logs: **datensparsam** (keine Volltexte/Payloads), nur Request‑IDs + Usage + Error‑Codes; Retention: **14 Tage**
+  - App‑Logs: datensparsam, ohne sensitive Inhalte; Retention: **14 Tage**
+  - Audio‑Exports: nur im eigenen Storage, keine “public” Buckets (signed URLs)
+- Default: Keine serverseitige Speicherung von Provider‑Payloads (Prompts/SSML) – nur User‑Assets (Skript/Audio) sind persistente Daten.
+- Hinweis: Billing-/Ledger‑Daten und Consent‑Records können aus **gesetzlichen Aufbewahrungspflichten** länger aufzubewahren sein (Details später juristisch prüfen).
+- Impact: DSGVO‑Dokumentation, Storage‑Kosten, “Alles löschen” Implementierung, Debuggability/Support.
+
+## DEC-019: OAuth Provider (MVP)
+- Status: decided
+- Entscheidung: OAuth im MVP mit **Google + Apple** (zusätzlich zu Magic Link).
+- Impact: Auth‑Setup, Provider‑Configs, Support, App‑Store/Apple‑Setup-Aufwand.
