@@ -24,6 +24,7 @@ Ergänze pro umgesetztem Baustein einen Abschnitt:
   - Next.js App: `src/app/layout.tsx`, `src/app/page.tsx`
   - API: `src/app/api/health/route.ts`, `src/app/api/jobs/sleep/route.ts`, `src/app/api/jobs/[id]/route.ts`
   - DB/Prisma: `prisma/schema.prisma`, `src/server/db.ts`
+  - Migration: `prisma/migrations/20260210201500_init/migration.sql`, `prisma/migrations/migration_lock.toml`
   - Queue/Worker: `src/server/queue.ts`, `src/worker/worker.ts`
   - Local Dev: `docker-compose.yml`, `.env.example`
 - **Tests:** `src/server/env.test.ts`
