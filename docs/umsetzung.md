@@ -18,6 +18,17 @@ Ergänze pro umgesetztem Baustein einen Abschnitt:
 - **Abweichungen/Trade-offs:** kurz (warum anders als Plan / warum so?)
 - **Offene Punkte:** Issues (Dateipfade unter `agents/issues/`)
 
-## Status
-Noch keine Code‑Implementierung (Planung‑first). Startpunkt: `agents/tasks/005-repo-bootstrap.md`.
-
+## Repo-Bootstrap: Web+DB+Worker Skeleton (2026-02-10)
+- **Planung:** `planung/architecture.md` (Worker + DB), `planung/flows.md` (Job-Polling), DEC‑020/DEC‑009 in `planung/entscheidungen.md`
+- **Implementierung:**
+  - Next.js App: `src/app/layout.tsx`, `src/app/page.tsx`
+  - API: `src/app/api/health/route.ts`, `src/app/api/jobs/sleep/route.ts`, `src/app/api/jobs/[id]/route.ts`
+  - DB/Prisma: `prisma/schema.prisma`, `src/server/db.ts`
+  - Queue/Worker: `src/server/queue.ts`, `src/worker/worker.ts`
+  - Local Dev: `docker-compose.yml`, `.env.example`
+- **Tests:** `src/server/env.test.ts`
+- **Doku/Runbooks:** `agents/tasks/120-implementation-loop.md` (Loop), `agents/runbooks/dev_setup.md` (Setup, wird laufend konkretisiert)
+- **Abweichungen/Trade-offs:**
+  - Postgres ist Voraussetzung für Jobs/Queue; `docker compose` ist geplant, kann aber in Umgebungen ohne Docker nicht direkt verifiziert werden.
+  - Next Build zeigt Warnungen durch dynamische Requires in `graphile-worker`/`cosmiconfig` (keine Build-Blocker, aber beobachten).
+- **Offene Punkte:** Siehe `agents/issues/` (z.B. Provider-Recherche DEC‑003/004, ggf. Audit/Warnings später triagieren)

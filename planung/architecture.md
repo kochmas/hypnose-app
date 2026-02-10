@@ -16,7 +16,7 @@ Open Decisions (SSoT): `planung/entscheidungen.md`
 
 1. **Web App (Frontend + API)**: Next.js (TypeScript)
 2. **DB**: Postgres (EU‑Region)
-3. **Job Queue / Worker**: Postgres‑basierter Worker (vermeidet Redis im MVP; siehe DEC‑009 in `planung/entscheidungen.md`)
+3. **Job Queue / Worker**: Postgres‑basierter Worker (kein Redis im MVP; siehe DEC‑009 in `planung/entscheidungen.md`)
 4. **Object Storage**: S3‑kompatibel (EU Bucket) für Audio
 5. **Payment**: Stripe (Credits kaufen)
 6. **Observability**: Sentry (FE/BE), strukturierte Logs
@@ -56,7 +56,7 @@ Open Decisions (SSoT): `planung/entscheidungen.md`
 - Rate limiting: per Middleware (IP/User), plus serverseitige Job‑Limits
 
 **Jobs/Worker**
-- Postgres Worker: z.B. `pg-boss` oder `graphile-worker`
+- Postgres Worker: **`graphile-worker`** (Default; kein Redis)
 - Audio Processing: ffmpeg (Merge/Normalize/Fades)
 - Job-Policy (MVP): Status‑State‑Machine, Retries/Backoff, Idempotency‑Keys, Abbruch/Timeouts, “bill only on final output”
 

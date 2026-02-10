@@ -25,8 +25,7 @@
 - [ ] Lokales Setup ist dokumentiert (siehe `agents/runbooks/dev_setup.md`)
 - [ ] Web startet lokal ohne Cloud-Abhängigkeiten
 - [ ] Worker startet lokal und verarbeitet einen “Hello World” Job (End-to-End)
-- [ ] `bash agents/scripts/verify.sh` erzeugt einen PASS-Report (nach `pnpm install`)
+- [ ] `bash agents/scripts/verify.sh` erzeugt einen PASS-Report (nach `npm install` oder `pnpm install`)
 
 ## Prüfen
 - [ ] `bash agents/scripts/verify.sh`
-

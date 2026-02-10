@@ -67,21 +67,6 @@ Archiv:
 - Offen:
   - konkreter Provider + Voice‑Katalog + Pricing (siehe Issue `agents/issues/ISSUE-0002-provider-recherche-tts-dec-004.md`).
 
-## DEC-009: Queue/Worker Technologie (MVP)
-- Status: proposed
-- Default (Vorschlag): Postgres‑basierter Worker (z.B. `pg-boss` oder `graphile-worker`) wie in `planung/architecture.md`.
-- Hinweis: “Worker” = separater, **dauerhaft laufender** Prozess, der Jobs (LLM/TTS) asynchron abarbeitet (Retries/Backoff/Timeouts), damit Web‑Requests schnell bleiben.
-- Constraint: **Ein dauerhafter Worker‑Prozess ist ok** (nicht “serverless only”).
-- Diskussionspunkte (Optionen):
-  - Postgres‑Worker: weniger Infra, aber DB‑Load/Locking/Throughput beachten.
-  - Redis Queue (BullMQ): bewährt für Jobs, aber extra Komponente + Ops.
-  - Managed Queue (z.B. SQS): sehr robust, aber mehr Setup/Glue‑Code + lokale Dev.
-- Kriterien: Retries/Backoff, Job‑Visibility, Idempotency, Kosten, DX, Monitoring.
-- Next step: Spike‑Plan liegt in `planung/spikes/SPIKE-DEC-009-queue-worker.md` (POC erst nach Repo‑Bootstrap).
-- Fragen:
-  1) Willst du für MVP **Redis vermeiden** (Postgres‑Worker), oder ist Redis ok?
-- Impact: Retry‑Policy, Job‑Monitoring, Deploy‑Komplexität.
-
 ## DEC-021: UI Component Library (MVP)
 - Status: proposed
 - Default (Vorschlag): **Tailwind + shadcn/ui (Radix-basiert)** als UI‑Basis (A11y‑Primitives + schnelle Umsetzung).
@@ -218,3 +203,14 @@ Archiv:
   - Secrets/Monitoring einfacher zentral zu halten
 - Next step: Staging‑Validierung nach Repo‑Bootstrap via `planung/spikes/SPIKE-DEC-020-hosting-deployment.md`.
 - Impact: Ops‑Aufwand (Healthchecks/Restarts/Logs), aber einfaches MVP‑Deployment.
+
+## DEC-009: Queue/Worker Technologie (MVP)
+- Status: decided
+- Entscheidung: **Postgres‑basierter Worker**, kein Redis im MVP.
+- Constraint: **Ein dauerhafter Worker‑Prozess ist ok** (nicht “serverless only”).
+- Warum:
+  - weniger externe Ressourcen / weniger laufende Zusatzkosten (kein Managed Redis)
+  - weniger moving parts (Deployment/Monitoring)
+- Umsetzung (Default): Postgres‑Worker‑Lib (z.B. `graphile-worker`) im selben Node‑Deploy wie Web/API (siehe DEC‑020).
+- Next step: POC/Validierung nach Repo‑Bootstrap via `planung/spikes/SPIKE-DEC-009-queue-worker.md`.
+- Impact: Retry‑Policy, Job‑Monitoring, Deploy‑Komplexität.

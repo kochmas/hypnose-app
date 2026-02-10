@@ -7,10 +7,14 @@ Praktisch testen, welche Queue/Worker‑Variante für den MVP (LLM/TTS Jobs + Cr
 - **Postgres‑Worker** reicht für MVP (weniger Infra), wenn wir einen dauerhaften Worker‑Prozess betreiben können.
 - Redis/Managed lohnt erst, wenn Throughput/Isolation/Observability Probleme machen.
 
+## Entscheidung (Stand)
+- DEC‑009 ist entschieden: **Postgres‑Worker**, kein Redis im MVP.
+- Dieser Spike dient dazu, das Setup nach Repo‑Bootstrap praktisch zu validieren (Hello‑Job, Retries, Statusupdates).
+
 ## Optionen (zu testen)
-1. **Postgres‑Worker** (z.B. `graphile-worker` oder `pg-boss`)
-2. **Redis Queue** (BullMQ)
-3. **Managed Queue** (SQS o.ä.) – nur als Vergleich/Plan, nicht zwingend im Spike 1
+1. **Postgres‑Worker** (Default: `graphile-worker`)
+2. Redis Queue (BullMQ) – verworfen für MVP (Kosten/Infra), bleibt als Later‑Fallback
+3. Managed Queue (SQS o.ä.) – Later‑Fallback
 
 ## Voraussetzungen / Prereqs
 - `agents/tasks/005-repo-bootstrap.md` ist umgesetzt (Next.js + Postgres + Prisma + Worker Skeleton).
@@ -38,4 +42,3 @@ Praktisch testen, welche Queue/Worker‑Variante für den MVP (LLM/TTS Jobs + Cr
 
 ## Folgearbeiten
 - Update `planung/entscheidungen.md` (DEC‑009) + ggf. `planung/architecture.md`.
-
