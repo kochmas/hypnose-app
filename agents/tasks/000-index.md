@@ -18,3 +18,4 @@ Startpunkt für agentengetriebene Umsetzung. Die Tasks referenzieren die in `pla
 - `agents/tasks/120-implementation-loop.md` – Implementierung: Plan/Arch/UI → Code+Tests+Docs → Review
 - `agents/tasks/130-implementation-alignment-loop.md` – Implementierung gegen UI/Arch/Plan abgleichen + Ungereimtheiten dokumentieren
 - `agents/tasks/140-implementation-legal-baseline.md` – Erster konkreter Implementierungs-Slice: Rechtstexte + KI-Transparenz im UI
+- `agents/tasks/150-implementation-clickwrap-consent.md` – Nächster Implementierungs-Slice: Clickwrap/Consent-Logging + serverseitiges Job-Gating

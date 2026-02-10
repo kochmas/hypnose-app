@@ -15,6 +15,8 @@ export default function Home() {
       </header>
 
       <SleepJobDemo
+        termsVersion={LEGAL_DOCUMENT_VERSIONS.termsOfService}
+        privacyVersion={LEGAL_DOCUMENT_VERSIONS.privacyPolicy}
         aiTransferNoticeVersion={LEGAL_DOCUMENT_VERSIONS.aiTransferNotice}
       />
 

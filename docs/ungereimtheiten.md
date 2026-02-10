@@ -58,3 +58,15 @@ Fuer jedes Finding:
 - **Scope:** Abgleich der Legal-Baseline-Implementierung gegen Planung/UI/Architektur
 - **Gepruefte Dateien:** `planung/backlog.md`, `planung/rechtstexte.md`, `planung/ui.md`, `planung/flows.md`, `planung/entscheidungen.md`, `src/app/page.tsx`, `src/app/_components/SleepJobDemo.tsx`, `src/app/_components/SiteLegalLinks.tsx`, `src/app/impressum/page.tsx`, `src/app/datenschutz/page.tsx`, `src/app/agb/page.tsx`, `src/server/legal/versions.ts`, `docs/umsetzung.md`
 - **Findings:** keine Findings
+
+## Runde: 2026-02-10 (MVP Slice 02 Clickwrap/Consent Alignment)
+- **Scope:** Abgleich der Clickwrap/Consent-Implementierung gegen Planung/UI/Architektur
+- **Gepruefte Dateien:** `planung/rechtstexte.md`, `planung/flows.md`, `planung/kriterien.md`, `planung/entscheidungen.md`, `prisma/schema.prisma`, `src/server/legal/consent.ts`, `src/app/api/consents/status/route.ts`, `src/app/api/consents/accept/route.ts`, `src/app/api/consents/revoke/route.ts`, `src/app/api/jobs/sleep/route.ts`, `src/app/_components/SleepJobDemo.tsx`, `docs/umsetzung.md`
+- **Findings:**
+  - `severity: medium`
+    `area: privacy`
+    `type: drift`
+    `action: issue`
+    `status: open`
+    `referenzen: agents/issues/ISSUE-0004-consent-records-not-yet-mapped-to-authenticated-user.md`  
+    Beschreibung: Consent-Eintraege sind aktuell anonym ueber `subjectKey` gebunden und noch nicht an Auth-User (`userId`) gekoppelt.

@@ -2,12 +2,14 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 
 import { prisma } from "@/server/db";
+import { summarizeConsentState } from "@/server/legal/consent";
 import { getWorkerUtils } from "@/server/queue";
 
 export const runtime = "nodejs";
 
 const requestSchema = z.object({
   seconds: z.number().int().min(1).max(60).default(10),
+  subjectKey: z.string().uuid(),
 });
 
 export async function POST(request: Request) {
@@ -17,7 +19,28 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "invalid_body" }, { status: 400 });
   }
 
-  const { seconds } = parsedBody.data;
+  const { seconds, subjectKey } = parsedBody.data;
+
+  const consentRecords = await prisma.consentRecord.findMany({
+    where: {
+      subjectKey,
+    },
+    select: {
+      consentType: true,
+      documentVersion: true,
+      revokedAt: true,
+    },
+  });
+  const consentSummary = summarizeConsentState(consentRecords);
+  if (!consentSummary.consents.canStartGeneration) {
+    return NextResponse.json(
+      {
+        error: "consent_required",
+        missingRequired: consentSummary.consents.missingRequired,
+      },
+      { status: 403 },
+    );
+  }
 
   const job = await prisma.job.create({
     data: {

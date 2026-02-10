@@ -14,6 +14,12 @@ enum JobStatus {
   failed
 }
 
+enum ConsentType {
+  TERMS_ACCEPTANCE
+  PRIVACY_ACKNOWLEDGEMENT
+  AI_TRANSFER_ACKNOWLEDGEMENT
+}
+
 model Job {
   id          String    @id @default(uuid())
   type        String
@@ -28,3 +34,17 @@ model Job {
   @@index([status, createdAt])
 }
 
+model ConsentRecord {
+  id              String      @id @default(uuid())
+  subjectKey      String
+  consentType     ConsentType
+  documentVersion String
+  acceptedAt      DateTime    @default(now())
+  revokedAt       DateTime?
+  metadata        Json?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  @@unique([subjectKey, consentType, documentVersion])
+  @@index([subjectKey, consentType, acceptedAt])
+}

@@ -48,3 +48,19 @@ Ergänze pro umgesetztem Baustein einen Abschnitt:
   - Rechtstexte sind bewusst als vorlaeufige Platzhalter markiert; finale juristische Texte bleiben ein separater Launch-Block.
   - Clickwrap/Consent-Logging ist in diesem Slice noch nicht technisch umgesetzt (separater Folgetask mit Auth-/Account-Kontext).
 - **Offene Punkte:** ggf. Folgetask fuer vollstaendiges Consent-Logging + versionierte Clickwrap-Speicherung in der DB.
+
+## MVP Slice 02: Clickwrap & Consent-Logging (2026-02-10)
+- **Planung:** `planung/rechtstexte.md` (Clickwrap/Consent), `planung/flows.md` (Flow A/C), `planung/kriterien.md` (Consent-Logging, Transparenz), DEC‑001/DEC‑014 in `planung/entscheidungen.md`
+- **Implementierung:**
+  - Consent-Datenmodell: `prisma/schema.prisma`, `prisma/migrations/20260210223000_add_consent_records/migration.sql`
+  - Consent-Logik: `src/server/legal/consent.ts`
+  - Consent-APIs: `src/app/api/consents/status/route.ts`, `src/app/api/consents/accept/route.ts`, `src/app/api/consents/revoke/route.ts`
+  - Job-Gating (serverseitig): `src/app/api/jobs/sleep/route.ts`
+  - Clickwrap-UI am CTA: `src/app/_components/SleepJobDemo.tsx`, `src/app/page.tsx`
+  - Workflow/Task: `agents/tasks/150-implementation-clickwrap-consent.md`
+- **Tests:** `src/server/legal/consent.test.ts`, `src/server/legal/versions.test.ts`
+- **Doku/Runbooks:** `docs/ungereimtheiten.md`, `agents/issues/ISSUE-0004-consent-records-not-yet-mapped-to-authenticated-user.md`
+- **Abweichungen/Trade-offs:**
+  - Consent ist im MVP noch an anonymen `subjectKey` gebunden (LocalStorage), nicht an `userId`.
+  - AI-Hinweis ist optional bestaetigbar und widerrufbar; AGB + Datenschutz sind fuer Jobstart zwingend.
+- **Offene Punkte:** Auth-basiertes Consent-Mapping als Folgearbeit (siehe `agents/issues/ISSUE-0004-consent-records-not-yet-mapped-to-authenticated-user.md`).
