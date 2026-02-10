@@ -53,3 +53,8 @@ Fuer jedes Finding:
     `status: resolved`
     `referenzen: docs/umsetzung.md`  
     Beschreibung: Trade-off-Hinweis zu Build-Warnungen war veraltet; aktualisiert auf den verbleibenden Verifikationspunkt (lokales E2E ohne Docker).
+
+## Runde: 2026-02-10 (MVP Slice 01 Legal Baseline Alignment)
+- **Scope:** Abgleich der Legal-Baseline-Implementierung gegen Planung/UI/Architektur
+- **Gepruefte Dateien:** `planung/backlog.md`, `planung/rechtstexte.md`, `planung/ui.md`, `planung/flows.md`, `planung/entscheidungen.md`, `src/app/page.tsx`, `src/app/_components/SleepJobDemo.tsx`, `src/app/_components/SiteLegalLinks.tsx`, `src/app/impressum/page.tsx`, `src/app/datenschutz/page.tsx`, `src/app/agb/page.tsx`, `src/server/legal/versions.ts`, `docs/umsetzung.md`
+- **Findings:** keine Findings

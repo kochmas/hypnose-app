@@ -17,3 +17,4 @@ Startpunkt für agentengetriebene Umsetzung. Die Tasks referenzieren die in `pla
 - `agents/tasks/095-decision-spike-loop.md` – Entscheidungen per “Spikes” praktisch testen (POC) und dann festzurren
 - `agents/tasks/120-implementation-loop.md` – Implementierung: Plan/Arch/UI → Code+Tests+Docs → Review
 - `agents/tasks/130-implementation-alignment-loop.md` – Implementierung gegen UI/Arch/Plan abgleichen + Ungereimtheiten dokumentieren
+- `agents/tasks/140-implementation-legal-baseline.md` – Erster konkreter Implementierungs-Slice: Rechtstexte + KI-Transparenz im UI

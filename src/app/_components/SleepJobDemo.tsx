@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
 type JobStatus = "queued" | "running" | "succeeded" | "failed";
@@ -14,7 +15,11 @@ type JobResponse = {
   lastError: string | null;
 };
 
-export function SleepJobDemo() {
+type SleepJobDemoProps = {
+  aiTransferNoticeVersion: string;
+};
+
+export function SleepJobDemo({ aiTransferNoticeVersion }: SleepJobDemoProps) {
   const [jobId, setJobId] = useState<string | null>(null);
   const [job, setJob] = useState<JobResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -76,6 +81,21 @@ export function SleepJobDemo() {
         Polling abgefragt wird.
       </p>
 
+      <p className="mt-3 rounded-md border border-amber-300 bg-amber-50 p-3 text-xs text-amber-900">
+        KI-Hinweis: Beim Start der Generierung wird eingegebener Text an externe
+        KI-Dienstleister zur Verarbeitung uebertragen. Bitte keine sensiblen Daten
+        und keine Daten Dritter ohne Rechtsgrundlage eingeben. Version:{" "}
+        {aiTransferNoticeVersion}. Details in{" "}
+        <Link href="/datenschutz" className="underline">
+          Datenschutz
+        </Link>{" "}
+        und{" "}
+        <Link href="/agb" className="underline">
+          AGB
+        </Link>
+        .
+      </p>
+
       <div className="mt-3 flex flex-wrap items-center gap-2">
         <button
           type="button"
@@ -112,4 +132,3 @@ export function SleepJobDemo() {
     </section>
   );
 }
-

@@ -33,3 +33,18 @@ Ergänze pro umgesetztem Baustein einen Abschnitt:
   - Postgres ist Voraussetzung für Jobs/Queue; `docker compose` ist geplant, kann aber in Umgebungen ohne Docker nicht direkt verifiziert werden.
   - Lokales E2E des Worker-Flows (UI-Klick bis `succeeded`) ist in dieser Umgebung ohne Docker-DB nicht vollständig verifiziert; Build/Lint/Unit-Tests sind grün.
 - **Offene Punkte:** Siehe `agents/issues/` (z.B. Provider-Recherche DEC‑003/004, ggf. Audit/Warnings später triagieren)
+
+## MVP Slice 01: Public Legal Baseline + AI-Transparenz (2026-02-10)
+- **Planung:** `planung/backlog.md` (Epic 1, P0), `planung/rechtstexte.md`, `planung/ui.md` (Flow A/C), `planung/flows.md` (Onboarding + Generierung), DEC‑001/DEC‑014 in `planung/entscheidungen.md`
+- **Implementierung:**
+  - Home + CTA-Hinweis: `src/app/page.tsx`, `src/app/_components/SleepJobDemo.tsx`
+  - Rechtstextseiten: `src/app/impressum/page.tsx`, `src/app/datenschutz/page.tsx`, `src/app/agb/page.tsx`
+  - Sichtbare Footer-Links: `src/app/_components/SiteLegalLinks.tsx`
+  - Versionierung rechtlicher Texte: `src/server/legal/versions.ts`
+  - Metadaten/Layout-Basis: `src/app/layout.tsx`
+- **Tests:** `src/server/legal/versions.test.ts`
+- **Doku/Runbooks:** `agents/tasks/140-implementation-legal-baseline.md`, `docs/ungereimtheiten.md`
+- **Abweichungen/Trade-offs:**
+  - Rechtstexte sind bewusst als vorlaeufige Platzhalter markiert; finale juristische Texte bleiben ein separater Launch-Block.
+  - Clickwrap/Consent-Logging ist in diesem Slice noch nicht technisch umgesetzt (separater Folgetask mit Auth-/Account-Kontext).
+- **Offene Punkte:** ggf. Folgetask fuer vollstaendiges Consent-Logging + versionierte Clickwrap-Speicherung in der DB.
