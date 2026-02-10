@@ -20,6 +20,8 @@ Die Produkt- und Legal-Notizen liegen in `planung/`:
 - `planung/pausen.md` (Pausen/Timing ohne SSML/HTML)
 - `planung/risiken.md` (Safety/Legal-Risiken)
 - `planung/rechtstexte.md` (AGB/Datenschutz/Consent-Plan)
+- `docs/umsetzung.md` (Traceability Planung -> Implementierung -> Tests)
+- `docs/ungereimtheiten.md` (Abweichungs-/Ungereimtheiten-Log aus Alignment-Checks)
 
 ## Arbeitsweise (empfohlen)
 1. Task aus `agents/tasks/` wählen.

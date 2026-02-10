@@ -75,7 +75,7 @@ Open Decisions (SSoT): `planung/entscheidungen.md`
 - Audit Logs light (Ledger/Consent/Policy Blocks)
 
 **Dev/CI**
-- Package manager: pnpm
+- Package manager: npm (Default) oder pnpm
 - Lint/Format: ESLint + Prettier
 - Tests: Vitest (Unit), Playwright (E2E, später)
 - CI: GitHub Actions (lint/test/build)
@@ -83,9 +83,9 @@ Open Decisions (SSoT): `planung/entscheidungen.md`
 
 ## 4) Repo‑Struktur (Vorschlag)
 Im MVP reicht ein Repo:
-- `app/` (Next.js)
-- `src/` (shared: domain, adapters, pricing, renderer)
-- `worker/` (Job runner)
+- `src/app/` (Next.js App Router + API Routes)
+- `src/server/` (DB/Queue/Server-Utilities)
+- `src/worker/` (Job runner)
 - `prisma/` (Schema/Migrations)
 - `agents/` (Tasks/Prompts/Evals/Runbooks – bereits angelegt)
 - `planung/` (Produkt/Legal‑Docs – bereits angelegt)
@@ -182,7 +182,7 @@ Siehe `planung/entscheidungen.md` (z.B. DEC‑003/004/007/009/019/020).
 Ziel: lokale Entwicklung ohne Cloud-Abhängigkeiten, aber produktnah (Jobs, Storage, FFmpeg).
 
 **Voraussetzungen (MVP)**
-- Node.js LTS + pnpm
+- Node.js LTS + npm (oder pnpm)
 - Docker (für Postgres; optional MinIO für S3 lokal)
 
 **Lokal-Setup (geplant)**

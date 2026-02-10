@@ -11,6 +11,7 @@
 - Verify/Triage: `agents/tasks/060-verify-triage-loop.md`, `bash agents/scripts/verify.sh`
 - Reviewer-Prompt: `agents/prompts/implementation_review.v0.md`
 - Implementation Agent Prompt: `agents/prompts/implementation_loop.v0.md`
+- Alignment Loop: `agents/tasks/130-implementation-alignment-loop.md`
 - Traceability-Doku: `docs/umsetzung.md`
 - Checklist: `agents/evals/implementation_checklist.v0.md`
 
@@ -20,6 +21,7 @@
 - [ ] Stages/Etappen definieren (3–6), jeweils mit Akzeptanzkriterien
 - [ ] Implementierung + passende Tests (Unit/Integration je nach Feature)
 - [ ] Doku/Traceability aktualisieren (inkl. Begründung: Mapping Planung → Code)
+- [ ] Nach Implementierung Alignment-Check ausführen und Ungereimtheiten in `docs/ungereimtheiten.md` dokumentieren
 - [ ] Review/Verify ausführen und Findings fixen oder als Issue loggen
 
 **Out:**
@@ -47,4 +49,3 @@
 
 ## Prüfen
 - [ ] `bash agents/scripts/verify.sh`
-

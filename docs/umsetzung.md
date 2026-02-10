@@ -31,5 +31,5 @@ Ergänze pro umgesetztem Baustein einen Abschnitt:
 - **Doku/Runbooks:** `agents/tasks/120-implementation-loop.md` (Loop), `agents/runbooks/dev_setup.md` (Setup, wird laufend konkretisiert)
 - **Abweichungen/Trade-offs:**
   - Postgres ist Voraussetzung für Jobs/Queue; `docker compose` ist geplant, kann aber in Umgebungen ohne Docker nicht direkt verifiziert werden.
-  - Next Build zeigt Warnungen durch dynamische Requires in `graphile-worker`/`cosmiconfig` (keine Build-Blocker, aber beobachten).
+  - Lokales E2E des Worker-Flows (UI-Klick bis `succeeded`) ist in dieser Umgebung ohne Docker-DB nicht vollständig verifiziert; Build/Lint/Unit-Tests sind grün.
 - **Offene Punkte:** Siehe `agents/issues/` (z.B. Provider-Recherche DEC‑003/004, ggf. Audit/Warnings später triagieren)
