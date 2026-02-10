@@ -111,6 +111,34 @@ Archiv:
   2) Ist “EU‑Hosting” als Default Pflicht (DB/Storage), auch wenn LLM/TTS ggf. US‑Transfers haben?
 - Impact: DX, Ops-Aufwand, Kosten, Security/Secrets, Monitoring.
 
+## DEC-021: UI Component Library (MVP)
+- Status: proposed
+- Default (Vorschlag): **Tailwind + shadcn/ui (Radix-basiert)** als UI‑Basis (A11y‑Primitives + schnelle Umsetzung).
+- Optionen:
+  - A) shadcn/ui (Radix) + Tailwind (Default)
+  - B) Radix only + eigene Components (mehr Aufwand)
+  - C) anderes UI‑Kit (höheres Lock‑in/Style‑Mismatch möglich)
+- Warum: konsistent, agentenfreundlich (kleine Komponenten), gute A11y‑Basics.
+- Impact: UI‑Konsistenz, A11y, DX, Bundle/Styling.
+
+## DEC-022: Script Editor Implementierung (MVP)
+- Status: proposed
+- Default (Vorschlag): **Plain text + strukturierte Blocks** (Sections + Pause‑Chips), kein “full rich-text”.
+- Optionen:
+  - A) Text/Markdown + Blocks (Default, tag‑free, robust)
+  - B) Rich‑Text Editor (TipTap/Slate) + Custom Nodes (mehr Komplexität)
+- Warum: Tag‑free Pausen/Structure sind leichter mit Blocks + Parser; weniger Editor‑Edge‑Cases.
+- Impact: Editor‑UX, Implementations‑Komplexität, Export/Import, A11y.
+
+## DEC-023: Job Status Updates (MVP)
+- Status: proposed
+- Default (Vorschlag): **Polling** (z.B. alle 1–3s mit Backoff) auf Job‑Status Endpoints.
+- Optionen:
+  - A) Polling (Default, simpel, robust)
+  - B) SSE/Streaming (besseres UX, mehr Infra/Edge‑Cases)
+  - C) WebSockets (Overkill im MVP)
+- Impact: UX (Live‑Status), Infra/Complexity, Debuggability.
+
 ## DEC-012: Hintergrundmusik/Binaural (MVP)
 - Status: open
 - Default: **kein** Hintergrund im MVP (Lizenzrisiko) – später als optionales Add‑On.
