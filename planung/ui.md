@@ -12,6 +12,7 @@ Open Decisions (SSoT): `planung/entscheidungen.md`
 - **Safety-by-default**: Warn/Refocus statt Heilclaims; Hard-Block bei Krisen-Signalen
 - **Tag-free Editing**: Pausen werden als UI-Elemente bearbeitet, nicht als SSML/HTML
 - **A11y-first**: Keyboard/Fokus/Kontrast als Default, keine “only color” Signale
+- **Transparenz**: “KI‑generiert” Labels bei Skript/Audio, klare Disclaimer (kein Ersatz für Therapie)
 
 ## 2) Screen-Map / Navigation (MVP)
 **Public**
@@ -81,9 +82,17 @@ UX-Notizen:
 - Library: Liste, Suche/Filter (später), Status-Badges (Skript vorhanden? Audio vorhanden?)
 - Detail: Script-Versionen + Audio-Versionen, Export-Buttons, “Neu generieren” (später)
 
+### E2) Billing
+- Credit-Packs (z.B. Small/Medium/Large), klarer Preis/Mehrwert
+- Wallet: aktueller Saldo, letzte Ledger-Einträge, Refund/Adjustments sichtbar
+
 ### F) Settings: Export/Löschung
 - “Meine Daten exportieren” (DSAR light): Export anstoßen → Job-Status → Download-Link (signed URL, TTL)
 - “Account löschen”: Confirmation Dialog → Async Delete Job → Bestätigung
+
+### G) Labels/Disclaimer
+- “KI‑generiert” Label bei Skript-Versionen und Audio-Assets (siehe DEC‑014)
+- Disclaimer in Create/Editor/Export: “Wellness, kein Ersatz für Therapie/medizinische Behandlung”
 
 ## 4) Pausen-Editor (tag-free)
 UI-Elemente:
@@ -144,3 +153,7 @@ Vorschlag:
 - Musik/Binaural (lizenzsicher; DEC‑012)
 - Sharing/UGC Features (DSA‑Scope)
 - Vollständige Admin-UI (Operator kann initial config/CLI sein)
+- BYO-Prompting: Prompt-Editor + Paste/Import von LLM-Ergebnis (aus `planung/kriterien.md`)
+- BYO-TTS: Audio-Import (WAV/MP3) + optionales Post-Processing (Lautheit/Fades)
+- Varianten: einzelne Abschnitte neu generieren (statt alles neu)
+- Marker/Chapters: Kapitelmarken im Skript + Timeline

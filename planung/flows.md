@@ -94,6 +94,9 @@ Ziel: klare, testbare Abläufe für MVP – inkl. Safety Gate und Credits Reserv
 - Chunk fail → Retry; bei final fail: Release Reserve + Fehler anzeigen.
 - Partial chunks succeeded → Policy festlegen (MVP: nur bei Endresultat abrechnen).
 
+**Later (BYO-TTS Import)**
+- Nutzer lädt fertiges Audio hoch (WAV/MP3) statt TTS‑Job → optional Post‑Processing (Lautheit/Fades).
+
 ---
 
 ## Flow D: Safety Block (Krise/Selbstgefährdung)

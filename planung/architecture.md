@@ -45,7 +45,7 @@ Open Decisions (SSoT): `planung/entscheidungen.md`
 
 **Frontend**
 - Next.js (App Router)
-- UI: Tailwind CSS + shadcn/ui (oder Radix UI)
+- UI: Tailwind CSS + shadcn/ui (Radix‑basiert; siehe DEC‑021) oder Radix UI
 - Form/Validation: Zod
 
 **Backend**

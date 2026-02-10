@@ -102,6 +102,13 @@ Referenzen: `planung/flows.md`, `planung/kriterien.md`, `agents/runbooks/dsar_de
 - [ ] (P1) Löschung: “Account löschen” (DB + Storage, async + retries)
 - [ ] (P1) Retention Defaults technisch enforcebar (konfigurierbar; siehe `planung/entscheidungen.md`)
 
+## Epic 10 (P1): BYO & Iteration (Should-haves)
+Referenzen: `planung/kriterien.md`, `planung/ui.md`
+- [ ] (P1) BYO-Prompting: Prompt-Editor + “Paste/Import” von LLM-Ergebnis (ohne LLM-Kosten)
+- [ ] (P1) BYO-TTS: Audio-Import (WAV/MP3) + optional Post-Processing (Lautheit/Fades)
+- [ ] (P1) Varianten: einzelne Abschnitte regenerieren (z.B. Suggestionen), Credits transparent
+- [ ] (P1) Kapitelmarken/Marker im Skript + Timeline-Marker in Audio (später)
+
 ## Later (bewusst später)
 - BYO‑Keys (clientseitig) statt nur Import
 - Hintergrundmusik/Binaural (lizenzsicher)
