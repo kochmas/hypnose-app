@@ -82,21 +82,6 @@ Archiv:
   1) Willst du für MVP **Redis vermeiden** (Postgres‑Worker), oder ist Redis ok?
 - Impact: Retry‑Policy, Job‑Monitoring, Deploy‑Komplexität.
 
-## DEC-020: Hosting/Deployment (MVP)
-- Status: open
-- Default (Vorschlag): “weniger moving parts” für MVP:
-  - Web/API + Worker als **Node‑Deploy** (2 Prozesse) auf einem Host/Container‑Setup
-  - Postgres gemanagt (EU‑Region), Object Storage (EU)
-- Constraint: **EU‑Hosting ist Default für DB + Storage = ja** (auch wenn LLM/TTS ggf. US‑Transfers haben).
-- Next step: Spike‑Plan liegt in `planung/spikes/SPIKE-DEC-020-hosting-deployment.md` (Staging‑POC nach Repo‑Bootstrap).
-- Optionen:
-  - A) 1 Node‑Host (Container/VPS): Web + Worker zusammen (ein Deployment)
-  - B) Vercel (Web) + Worker separat (Fly/Render o.ä.) + managed Postgres
-  - C) Self‑host (z.B. Hetzner) + Postgres + Storage (mehr Ops, mehr Kontrolle)
-- Fragen:
-  1) Bevorzugst du A, B oder C fürs MVP?
-- Impact: DX, Ops-Aufwand, Kosten, Security/Secrets, Monitoring.
-
 ## DEC-021: UI Component Library (MVP)
 - Status: proposed
 - Default (Vorschlag): **Tailwind + shadcn/ui (Radix-basiert)** als UI‑Basis (A11y‑Primitives + schnelle Umsetzung).
@@ -222,3 +207,14 @@ Archiv:
 - Status: decided
 - Entscheidung: OAuth im MVP mit **Google + Apple** (zusätzlich zu Magic Link).
 - Impact: Auth‑Setup, Provider‑Configs, Support, App‑Store/Apple‑Setup-Aufwand.
+
+## DEC-020: Hosting/Deployment (MVP)
+- Status: decided
+- Entscheidung: **A) 1 Node‑Host (Container/VPS)**: Web/API + Worker als 2 Prozesse im selben Deployment.
+- Constraint: **EU‑Hosting ist Default für DB + Storage = ja** (auch wenn LLM/TTS ggf. US‑Transfers haben).
+- Warum:
+  - weniger moving parts als getrennte Deployments
+  - Worker läuft zuverlässig “always‑on”
+  - Secrets/Monitoring einfacher zentral zu halten
+- Next step: Staging‑Validierung nach Repo‑Bootstrap via `planung/spikes/SPIKE-DEC-020-hosting-deployment.md`.
+- Impact: Ops‑Aufwand (Healthchecks/Restarts/Logs), aber einfaches MVP‑Deployment.

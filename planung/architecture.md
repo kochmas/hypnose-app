@@ -197,15 +197,16 @@ Ziel: lokale Entwicklung ohne Cloud-Abhängigkeiten, aber produktnah (Jobs, Stor
 
 Runbook: `agents/runbooks/dev_setup.md`
 
-## 13) Deployment (MVP): Optionen
-Offen (siehe `planung/entscheidungen.md`, DEC‑009/DEC‑020): Der Worker braucht i.d.R. einen **dauerhaft laufenden Prozess**.
+## 13) Deployment (MVP): Entscheidung
+Entschieden (DEC‑020 in `planung/entscheidungen.md`):
+- **A) 1 Node‑Host (Container/VPS)**: Web/API + Worker als **2 Prozesse** im selben Deployment.
+- **EU‑Hosting Default**: DB + Object Storage in EU.
 
-Optionen:
-- **A) 1 Node‑Host (Container/VPS)**: Web + Worker als zwei Prozesse (oder ein Process Manager). + Einfach, – mehr “Ops”.
-- **B) Vercel (Web) + Worker separat** (Fly/Render o.ä.): + sehr gutes FE‑DX, – zwei Deployments/Secrets/Monitoring.
-- **C) Managed Queue + serverless workers**: + kein Dauerprozess, – mehr Cloud‑Glue/Komplexität.
+Der Worker ist “always‑on” und verarbeitet Jobs asynchron (siehe DEC‑009).
 
-Für MVP tendieren wir zu “weniger moving parts” (A oder B) und halten Queue/Worker (DEC‑009) bewusst einfach.
+Fallback/Alternativen (später, falls nötig):
+- Vercel (Web) + Worker separat (mehr moving parts, aber gutes FE‑DX)
+- Managed Queue + serverless workers (mehr Cloud‑Glue, oft unnötig im MVP)
 
 ## 14) Backups, Secrets, Kostenkontrolle (MVP)
 **Backups/DR**

@@ -7,6 +7,10 @@ Praktisch testbare Grundlage schaffen, um DEC‑020 (“Wie deployen wir Web+Wor
 - Für den MVP ist **eine simple, EU‑taugliche Deploy-Story** am wertvollsten: Web/API + Worker zuverlässig betreiben, Secrets sauber handhaben, Logs/Monitoring verfügbar.
 - “Serverless only” wird bei LLM/TTS‑Jobs schnell unbequem (Timeouts, Retries, lange Jobs, Concurrency).
 
+## Entscheidung (Stand)
+- DEC‑020 ist entschieden: **Option A (1 Node‑Host/Container, Web+Worker zusammen)**.
+- Dieser Spike dient dazu, die Entscheidung nach Repo‑Bootstrap praktisch in Staging zu validieren.
+
 ## Optionen (max. 3)
 1. **A) 1 Node‑Host/Container**: Web/API + Worker (2 Prozesse) auf einer Plattform/VPS
 2. **B) Vercel (Web) + Worker separat** (Fly/Render/Railway o.ä.) + managed Postgres
@@ -58,4 +62,3 @@ Praktisch testbare Grundlage schaffen, um DEC‑020 (“Wie deployen wir Web+Wor
 ## Folgearbeiten
 - `planung/entscheidungen.md` (DEC‑020) aktualisieren
 - `planung/architecture.md` Deployment‑Abschnitt konkretisieren
-
