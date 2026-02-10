@@ -70,11 +70,17 @@ Archiv:
 ## DEC-007: Retention Defaults (Inputs/Outputs/Audio/Logs)
 - Status: open
 - Default:
-  - Nutzer‑Assets (Skript/Audio): gespeichert bis Nutzer löscht
-  - Provider‑Requests/Logs: minimal + kurz (z.B. 7–30 Tage), datensparsam
-  - Audio‑Exports: nur im eigenen Storage, keine “public” Buckets
+  - Nutzer‑Assets (Skript/Audio): gespeichert bis Nutzer löscht (oder Account‑Löschung)
+  - DSAR Export: Export-Datei nur **kurzlebig** (signed URL, TTL z.B. 24–72h), danach löschen
+  - Provider‑Requests/Logs: **datensparsam** (keine Volltexte/Payloads), nur Request‑IDs + Usage + Error‑Codes; Retention kurz (z.B. 14–30 Tage)
+  - App‑Logs: datensparsam, ohne sensitive Inhalte; Retention kurz (z.B. 14–30 Tage)
+  - Audio‑Exports: nur im eigenen Storage, keine “public” Buckets (signed URLs)
+- Hinweis: Billing-/Ledger‑Daten und Consent‑Records können aus **gesetzlichen Aufbewahrungspflichten** länger aufzubewahren sein (Details später juristisch prüfen).
 - Ergänzung: Nutzer müssen **Export** ihrer personenbezogenen Daten/Assets (DSAR‑gedacht) durchführen können (siehe `planung/flows.md`, `planung/kriterien.md`, `agents/runbooks/dsar_delete.md`).
 - Impact: DSGVO‑Dokumentation, Storage‑Kosten, “Alles löschen” Implementierung.
+- Fragen:
+  1) Debugging: Sollen wir jemals Provider‑Payloads (Prompts/SSML) serverseitig speichern? Default: **nein** (nur im User‑Asset “Skript” selbst).
+  2) Log‑Retention: lieber **14 Tage** (datensparsam) oder **30 Tage** (besser für Support)?
 
 ## DEC-019: OAuth Provider (MVP)
 - Status: open
@@ -87,11 +93,13 @@ Archiv:
 ## DEC-009: Queue/Worker Technologie (MVP)
 - Status: proposed
 - Default (Vorschlag): Postgres‑basierter Worker (z.B. `pg-boss` oder `graphile-worker`) wie in `planung/architecture.md`.
+- Hinweis: “Worker” = separater, **dauerhaft laufender** Prozess, der Jobs (LLM/TTS) asynchron abarbeitet (Retries/Backoff/Timeouts), damit Web‑Requests schnell bleiben.
 - Diskussionspunkte (Optionen):
   - Postgres‑Worker: weniger Infra, aber DB‑Load/Locking/Throughput beachten.
   - Redis Queue (BullMQ): bewährt für Jobs, aber extra Komponente + Ops.
   - Managed Queue (z.B. SQS): sehr robust, aber mehr Setup/Glue‑Code + lokale Dev.
 - Kriterien: Retries/Backoff, Job‑Visibility, Idempotency, Kosten, DX, Monitoring.
+- Next step: Spike‑Plan liegt in `planung/spikes/SPIKE-DEC-009-queue-worker.md` (POC erst nach Repo‑Bootstrap).
 - Fragen:
   1) Willst du für MVP **Redis vermeiden** (Postgres‑Worker), oder ist Redis ok?
   2) Deployment‑Realität: können wir **einen dauerhaften Worker‑Prozess** betreiben (Container/VPS), oder soll alles “serverless” sein?
@@ -102,6 +110,7 @@ Archiv:
 - Default (Vorschlag): “weniger moving parts” für MVP:
   - Web/API + Worker als **Node‑Deploy** (2 Prozesse) auf einem Host/Container‑Setup
   - Postgres gemanagt (EU‑Region), Object Storage (EU)
+- Next step: Spike‑Plan liegt in `planung/spikes/SPIKE-DEC-020-hosting-deployment.md` (Staging‑POC nach Repo‑Bootstrap).
 - Optionen:
   - A) 1 Node‑Host (Container/VPS): Web + Worker zusammen (ein Deployment)
   - B) Vercel (Web) + Worker separat (Fly/Render o.ä.) + managed Postgres
