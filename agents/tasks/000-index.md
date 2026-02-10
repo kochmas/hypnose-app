@@ -11,6 +11,7 @@ Startpunkt für agentengetriebene Umsetzung. Die Tasks referenzieren die in `pla
 - `agents/tasks/060-verify-triage-loop.md` – Verify-Loop + Findings fixen oder als Issue loggen
 - `agents/tasks/070-architecture-review-align.md` – Architektur gegen Planung abgleichen und angleichen
 - `agents/tasks/080-app-planning-loop.md` – App-Planung ausbauen, reviewen und angleichen
+- `agents/tasks/110-product-alignment-loop.md` – Planung+Architektur+UI abgleichen (inkl. Decision-Paket)
 - `agents/tasks/090-decisions-discussion-loop.md` – Open Decisions agentisch ausdiskutieren und festzurren
 - `agents/tasks/100-ui-planning-loop.md` – UI/Design-System planen und mit Architektur/Flows abgleichen
 - `agents/tasks/095-decision-spike-loop.md` – Entscheidungen per “Spikes” praktisch testen (POC) und dann festzurren
