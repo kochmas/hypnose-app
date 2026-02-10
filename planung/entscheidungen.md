@@ -71,6 +71,7 @@ Archiv:
 - Status: proposed
 - Default (Vorschlag): Postgres‑basierter Worker (z.B. `pg-boss` oder `graphile-worker`) wie in `planung/architecture.md`.
 - Hinweis: “Worker” = separater, **dauerhaft laufender** Prozess, der Jobs (LLM/TTS) asynchron abarbeitet (Retries/Backoff/Timeouts), damit Web‑Requests schnell bleiben.
+- Constraint: **Ein dauerhafter Worker‑Prozess ist ok** (nicht “serverless only”).
 - Diskussionspunkte (Optionen):
   - Postgres‑Worker: weniger Infra, aber DB‑Load/Locking/Throughput beachten.
   - Redis Queue (BullMQ): bewährt für Jobs, aber extra Komponente + Ops.
@@ -79,7 +80,6 @@ Archiv:
 - Next step: Spike‑Plan liegt in `planung/spikes/SPIKE-DEC-009-queue-worker.md` (POC erst nach Repo‑Bootstrap).
 - Fragen:
   1) Willst du für MVP **Redis vermeiden** (Postgres‑Worker), oder ist Redis ok?
-  2) Deployment‑Realität: können wir **einen dauerhaften Worker‑Prozess** betreiben (Container/VPS), oder soll alles “serverless” sein?
 - Impact: Retry‑Policy, Job‑Monitoring, Deploy‑Komplexität.
 
 ## DEC-020: Hosting/Deployment (MVP)
@@ -87,6 +87,7 @@ Archiv:
 - Default (Vorschlag): “weniger moving parts” für MVP:
   - Web/API + Worker als **Node‑Deploy** (2 Prozesse) auf einem Host/Container‑Setup
   - Postgres gemanagt (EU‑Region), Object Storage (EU)
+- Constraint: **EU‑Hosting ist Default für DB + Storage = ja** (auch wenn LLM/TTS ggf. US‑Transfers haben).
 - Next step: Spike‑Plan liegt in `planung/spikes/SPIKE-DEC-020-hosting-deployment.md` (Staging‑POC nach Repo‑Bootstrap).
 - Optionen:
   - A) 1 Node‑Host (Container/VPS): Web + Worker zusammen (ein Deployment)
@@ -94,7 +95,6 @@ Archiv:
   - C) Self‑host (z.B. Hetzner) + Postgres + Storage (mehr Ops, mehr Kontrolle)
 - Fragen:
   1) Bevorzugst du A, B oder C fürs MVP?
-  2) Ist “EU‑Hosting” als Default Pflicht (DB/Storage), auch wenn LLM/TTS ggf. US‑Transfers haben?
 - Impact: DX, Ops-Aufwand, Kosten, Security/Secrets, Monitoring.
 
 ## DEC-021: UI Component Library (MVP)
